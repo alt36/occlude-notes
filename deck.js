@@ -19,7 +19,7 @@
         #card-overlay {
             position: relative;
             inset: auto;
-            background: #0b0b0b;
+            background: #6e6e6e;
             z-index: 1000;
             display: grid;
             grid-template-columns: repeat(${isPortrait ? suits.length : values.length}, 1fr);
