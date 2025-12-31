@@ -164,7 +164,7 @@
   githubButton.rel = 'noopener noreferrer';
 
   const githubImage = document.createElement('img');
-  githubImage.src = './assets/github-logo.png';
+  githubImage.src = './assets/github-mark.png';
   githubImage.alt = 'GitHub';
   githubButton.appendChild(githubImage);
 
