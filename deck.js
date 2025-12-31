@@ -24,7 +24,7 @@
             display: grid;
             grid-template-columns: repeat(${isPortrait ? suits.length : values.length}, 1fr);
             grid-template-rows: repeat(${isPortrait ? values.length : suits.length}, 1fr);
-            gap: 12px;
+            gap: ${isPortrait ? '6px' : '12px'};
             padding: 20px;
             box-sizing: border-box;
         }
