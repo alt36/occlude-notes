@@ -19,7 +19,7 @@
         #card-overlay {
             position: relative;
             inset: auto;
-            background: #6e6e6e;
+            background: #3b1712;
             z-index: 1000;
             display: grid;
             grid-template-columns: repeat(${isPortrait ? suits.length : values.length}, 1fr);
@@ -42,7 +42,7 @@
             align-items: center;
             gap: 12px;
             padding: 12px 16px;
-            background: #0b0b0b;
+            background: #4a1b15;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
@@ -51,8 +51,9 @@
             font-size: 14px;
             font-family: system-ui, sans-serif;
             font-weight: 600;
-            background: #ffffff;
-            border: none;
+            color: #ffc061;
+            background: #2b0a09;
+            border: solid 2px #ffc061;
             border-radius: 6px;
             cursor: pointer;
         }
@@ -61,10 +62,11 @@
             background: #f0f0f0;
         }
 
-        #github-button  {
+        #controls #github-button  {
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            background-color: #fefefe;
             padding: 8px 14px;
             margin-left: auto;
         }
@@ -81,6 +83,7 @@
 
         .card {
             background: #fbedc7;
+            border: solid 2px #9f962c;
             border-radius: 8px;
             font-family: system-ui, sans-serif;
             font-size: 2.2rem;
