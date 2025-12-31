@@ -26,7 +26,7 @@
         }
 
         .card {
-            background: #ffffff;
+            background: #fbedc7;
             border-radius: 8px;
             font-family: system-ui, sans-serif;
             font-size: 2.2rem;
@@ -43,14 +43,20 @@
             opacity: 0.5;
         }
 
-        .card.hearts,
-        .card.diamonds {
-            color: #b00000;
+        .card.hearts {
+            color: #ea1639;
         }
 
-        .card.clubs,
+        .card.diamonds {
+            color: #865283;
+        }
+
+        .card.clubs {
+            color: #26875e;
+        }
+
         .card.spades {
-            color: #000000;
+            color: #294b66;
         }
 
         #reset-button {
