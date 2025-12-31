@@ -9,6 +9,10 @@
     { name: 'spades',   symbol: '♠' }
   ];
 
+  const isPortrait = window.innerHeight > window.innerWidth;
+  const rowAxis = isPortrait ? values : suits;
+  const colAxis = isPortrait ? suits : values;
+
   /* ---------- Styles ---------- */
   const style = document.createElement('style');
   style.textContent = `
@@ -18,8 +22,8 @@
             background: #0b0b0b;
             z-index: 1000;
             display: grid;
-            grid-template-columns: repeat(${values.length}, 1fr);
-            grid-template-rows: repeat(${suits.length}, 1fr);
+            grid-template-columns: repeat(${isPortrait ? suits.length : values.length}, 1fr);
+            grid-template-rows: repeat(${isPortrait ? values.length : suits.length}, 1fr);
             gap: 12px;
             padding: 20px;
             box-sizing: border-box;
@@ -86,8 +90,12 @@
   overlay.id = 'card-overlay';
 
   /* ---------- Cards ---------- */
-  suits.forEach(suit => {
-    values.forEach(value => {
+  rowAxis.forEach(rowItem => {
+    colAxis.forEach(colItem => {
+
+      const value = isPortrait ? rowItem : colItem;
+      const suit  = isPortrait ? colItem : rowItem;
+
       const card = document.createElement('div');
       card.className = `card ${suit.name}`;
       card.textContent = `${value}${suit.symbol}`;
