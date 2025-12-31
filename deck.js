@@ -46,7 +46,7 @@
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        #reset-button {
+        #controls .button {
             padding: 8px 14px;
             font-size: 14px;
             font-family: system-ui, sans-serif;
@@ -57,7 +57,7 @@
             cursor: pointer;
         }
 
-        #reset-button:hover {
+        #controls .button:hover {
             background: #f0f0f0;
         }
 
@@ -146,8 +146,11 @@
   const controls = document.createElement('div');
   controls.id = 'controls';
 
+  /* -------- Reset button -------- */
   const resetButton = document.createElement('button');
   resetButton.id = 'reset-button';
+  resetButton.classList.add('button');
+
   resetButton.textContent = 'Reset';
   
   resetButton.addEventListener('click', () => {
@@ -156,8 +159,11 @@
     });
   });
 
+  /* -------- github button -------- */
   const githubButton = document.createElement('a');
   githubButton.id = 'github-button';
+  githubButton.classList.add('button');
+
   githubButton.href = 'https://github.com/alt36/occlude-notes/';
   githubButton.setAttribute('aria-label', 'View project on GitHub');
   githubButton.target = '_blank';
@@ -171,6 +177,7 @@
   controls.appendChild(resetButton);
   controls.appendChild(githubButton);
 
+  /* -------- finally, build the app -------- */
   app.appendChild(controls);
   app.appendChild(overlay);
 
