@@ -38,9 +38,45 @@
         }
 
         #controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             padding: 12px 16px;
             background: #0b0b0b;
             border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        #reset-button {
+            padding: 8px 14px;
+            font-size: 14px;
+            font-family: system-ui, sans-serif;
+            font-weight: 600;
+            background: #ffffff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #reset-button:hover {
+            background: #f0f0f0;
+        }
+
+        #github-button  {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 14px;
+            margin-left: auto;
+        }
+
+        #github-button img {
+            display: block;
+            height: 1.2em;
+            width: auto;
+        }
+
+        #github-button:hover {
+            opacity: 0.8;$
         }
 
         .card {
@@ -75,21 +111,6 @@
 
         .card.spades {
             color: #294b66;
-        }
-
-        #reset-button {
-            padding: 8px 14px;
-            font-size: 14px;
-            font-family: system-ui, sans-serif;
-            font-weight: 600;
-            background: #ffffff;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        #reset-button:hover {
-            background: #f0f0f0;
         }
     `;
   document.head.appendChild(style);
@@ -135,9 +156,23 @@
     });
   });
 
-  controls.appendChild(resetButton);
-  app.appendChild(controls);
+  const githubButton = document.createElement('a');
+  githubButton.id = 'github-button';
+  githubButton.href = 'https://github.com/alt36/occlude-notes/';
+  githubButton.setAttribute('aria-label', 'View project on GitHub');
+  githubButton.target = '_blank';
+  githubButton.rel = 'noopener noreferrer';
 
-	app.appendChild(overlay);
+  const githubImage = document.createElement('img');
+  githubImage.src = './assets/github-logo.png';
+  githubImage.alt = 'GitHub';
+  githubButton.appendChild(githubImage);
+
+  controls.appendChild(resetButton);
+  controls.appendChild(githubButton);
+
+  app.appendChild(controls);
+  app.appendChild(overlay);
+
 })();
 
