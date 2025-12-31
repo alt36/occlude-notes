@@ -17,8 +17,8 @@
   const style = document.createElement('style');
   style.textContent = `
         #card-overlay {
-            position: fixed;
-            inset: 0;
+            position: relative;
+            inset: auto;
             background: #0b0b0b;
             z-index: 1000;
             display: grid;
@@ -27,6 +27,20 @@
             gap: 12px;
             padding: 20px;
             box-sizing: border-box;
+        }
+
+        #app {
+            position: fixed;
+            inset: 0;
+            display: grid;
+            grid-template-rows: auto 1fr;
+            background: #0b0b0b;
+        }
+
+        #controls {
+            padding: 12px 16px;
+            background: #0b0b0b;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
         .card {
@@ -64,10 +78,6 @@
         }
 
         #reset-button {
-            position: fixed;
-            top: 16px;
-            right: 16px;
-            z-index: 1100;
             padding: 8px 14px;
             font-size: 14px;
             font-family: system-ui, sans-serif;
@@ -76,7 +86,6 @@
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
         }
 
         #reset-button:hover {
@@ -86,6 +95,10 @@
   document.head.appendChild(style);
 
   /* ---------- Overlay ---------- */
+  const app = document.createElement('div');
+  app.id = 'app';
+  document.body.appendChild(app);
+
   const overlay = document.createElement('div');
   overlay.id = 'card-overlay';
 
@@ -108,19 +121,23 @@
     });
   });
 
-  document.body.appendChild(overlay);
+  /* ---------- Controls ---------- */
+  const controls = document.createElement('div');
+  controls.id = 'controls';
 
-  /* ---------- Reset button ---------- */
   const resetButton = document.createElement('button');
   resetButton.id = 'reset-button';
   resetButton.textContent = 'Reset';
-
+  
   resetButton.addEventListener('click', () => {
-    overlay.querySelectorAll('.card.off').forEach(card => {
+    app.querySelectorAll('.card.off').forEach(card => {
       card.classList.remove('off');
     });
   });
 
-  document.body.appendChild(resetButton);
+  controls.appendChild(resetButton);
+  app.appendChild(controls);
+
+	app.appendChild(overlay);
 })();
 
