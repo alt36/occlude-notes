@@ -1,6 +1,10 @@
 (function () {
   'use strict';
 
+  const STORAGE_KEY = 'occludeDeck.offCards';
+  const storedOffCards = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  const offCardSet = new Set(storedOffCards);
+
   const values = ['2','3','4','5','6','7','8','9','10','J','Q'];
   const suits = [
     { name: 'clubs',    symbol: '♣' },
@@ -132,13 +136,32 @@
 
       const value = isPortrait ? rowItem : colItem;
       const suit  = isPortrait ? colItem : rowItem;
+      const cardId = `${value}-${suit.name}`;
 
       const card = document.createElement('div');
       card.className = `card ${suit.name}`;
       card.textContent = `${value}${suit.symbol}`;
+      card.dataset.cardId = cardId;
+
+      if (offCardSet.has(cardId)) {
+          card.classList.add('off');
+      }
 
       card.addEventListener('click', () => {
+        const cardId = card.dataset.cardId;
         card.classList.toggle('off');
+
+        if (card.classList.contains('off')) {
+            offCardSet.add(cardId);
+        } else {
+            offCardSet.delete(cardId);
+        }
+
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify([...offCardSet])
+        );
+
       });
 
       overlay.appendChild(card);
@@ -157,6 +180,9 @@
   resetButton.textContent = 'Reset';
   
   resetButton.addEventListener('click', () => {
+    offCardSet.clear();
+    localStorage.removeItem(STORAGE_KEY);
+
     app.querySelectorAll('.card.off').forEach(card => {
       card.classList.remove('off');
     });
